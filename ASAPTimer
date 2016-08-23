@@ -1,0 +1,27 @@
+/*This my pattern for executing some periodic actions on Arduino. 
+It is not always faster and ram lighter than millis() and micros() patterns but it may be more convenient in some ways too.
+That may be used for debouncing. My sketch is running every loop() at least 20 ms, and if i am using 5 ms time to wait to
+debount a button, it will still be at least ms waiting, also cpu will have to calculate difference betbtween currunt and last
+millis() and compare it. That is more difficult for cpu than just incrementing and decrementing one variable and comparing it
+to 0. At it is convenient in cases, when you dont care when exactly task will be done, you just want it to be done ASAP, but
+not during that particular iteration of loop().
+If your code works good now, i guess it will not be useful for you. 
+If you have ideas, benchmarks of that code or critics - please write it, i will be happy to learn or know thta it helped you. 
+*/
+
+boolean onOff=1; // arduino led state
+byte counter=2; // number of iterations made by loop(). Set as little variable as possible to save ram and cpu time. 
+// Your code will be executed every "counter" iteration of loop(). 
+void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+    counter--;
+    if (counter == 0) { comparing with 0 should be a bit faster and easier for Arduino to process. Correct me if i am wrong. 
+        onOff= !onOff; // changing state of LED
+        counter=2; // That digit sets how often your code will be executed. Every 2(3,4... set your own value) iterations of loop().
+        // write your code down there, instead of my "digitalWrite(13, onOff);"
+        digitalWrite(13, onOff);
+        }
+}
