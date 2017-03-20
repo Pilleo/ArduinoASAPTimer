@@ -1,7 +1,7 @@
 /*This is my pattern for executing some periodic actions on Arduino. 
 It may be not always faster and ram lighter than millis() and micros() patterns but it may be more convenient in some ways.
 It may be convenient in cases, when you dont care when exactly task will be done, you just want it to be done ASAP (as soon as possinle), but
-not during that particular iteration of loop(). Basicly you can use it as a timer if you know how it takes one iteration to be done.
+not during that particular iteration of loop(). Basicly you can use it as a timer if you know how much does it takes one iteration to be done.
 So, if your sketch runs 1 iteration of loop() for 1 ms, and you need some action to be done every 1 sec, 1ms*1000 == 1 sec. So you
 need it to be done every 1000 iterations. 
 That may be used for debouncing. My other sketch is running every loop() at least 20 ms, and if i am using 5 ms time to wait to
